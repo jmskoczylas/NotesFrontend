@@ -12,6 +12,12 @@ export default function App() {
   const [isSaving, setIsSaving] = useState(false)
   const [error, setError] = useState('')
 
+  function replaceNote(updatedNote) {
+    setNotes((current) =>
+      current.map((note) => (note.id === updatedNote.id ? updatedNote : note))
+    )
+  }
+
   async function loadNotes() {
     setIsLoading(true)
     setError('')
@@ -67,9 +73,14 @@ export default function App() {
     setError('')
 
     try {
-      await updateNote(editForm)
-      cancelEditing()
-      await loadNotes()
+      const updatedNote = await updateNote(editForm)
+      replaceNote(updatedNote)
+      setEditForm({
+        id: updatedNote.id,
+        title: updatedNote.title,
+        text: updatedNote.text || '',
+        noteVersion: updatedNote.noteVersion
+      })
     } catch (err) {
       setError(err.message)
     } finally {
