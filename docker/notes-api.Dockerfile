@@ -19,8 +19,9 @@ RUN apt-get update \
 COPY --from=build /app/publish .
 COPY --from=build /src/NotesMicroservice/src/Application/database ./database
 COPY NotesFrontend/docker/notes-api-entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+RUN sed -i 's/\r$//' /entrypoint.sh \
+    && chmod +x /entrypoint.sh
 
 EXPOSE 8080
 
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["sh", "/entrypoint.sh"]
