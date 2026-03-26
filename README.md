@@ -86,6 +86,22 @@ Notes:
 - The API container uses SQLite by default and stores its database in a Docker volume.
 - The frontend container proxies `/api` requests to the API container, so no browser-side container hostname is needed.
 
+## Kubernetes
+
+Draft only for now.
+
+- First pass manifests are in [`k8s`](/home/deck/Documents/GitHub/NotesFrontend/k8s).
+- Current assumption is published frontend and API images instead of local builds.
+- Current assumption is one API replica with SQLite on a PVC.
+- Current assumption is ingress routing `/` to the frontend and `/api` to the API.
+
+Todo:
+
+- replace placeholder image names
+- decide on ingress host / controller details
+- test the manifests on an actual cluster
+- probably replace SQLite before treating this as anything beyond a draft
+
 ## Features
 
 - Create note

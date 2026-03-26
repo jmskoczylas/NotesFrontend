@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: notes-frontend
+  namespace: notes
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: notes-frontend
+  template:
+    metadata:
+      labels:
+        app: notes-frontend
+    spec:
+      containers:
+        - name: notes-frontend
+          image: ghcr.io/your-org/notes-frontend:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+              name: http

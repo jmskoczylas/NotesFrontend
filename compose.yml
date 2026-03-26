@@ -1,8 +1,7 @@
 services:
   api:
     build:
-      context: ..
-      dockerfile: NotesFrontend/docker/notes-api.Dockerfile
+      context: ../NotesMicroservice
     environment:
       ASPNETCORE_ENVIRONMENT: Development
       ASPNETCORE_URLS: http://+:8080

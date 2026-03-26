@@ -1,0 +1,8 @@
+resources:
+  - namespace.yaml
+  - api-pvc.yaml
+  - api-deployment.yaml
+  - api-service.yaml
+  - frontend-deployment.yaml
+  - frontend-service.yaml
+  - ingress.yaml
